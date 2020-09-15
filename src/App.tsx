@@ -1,24 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Test from "./Test";
+import cookie from "cookie";
 
 function App() {
+  const cookies = cookie.parse(document.cookie);
+  const [open, setOpen] = useState<any>(cookies.username);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {open && <Test />}
+      <button onClick={() => setOpen(true)}>open</button>
     </div>
   );
 }
